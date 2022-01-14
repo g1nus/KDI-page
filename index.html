@@ -1,0 +1,205 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>KDI Paris</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <nav>
+    <h1>Knowledge and Data Integration project</h1>
+    <h3>
+      Exploration of the city of Paris 
+      <br/>
+      Year 2021/22
+    </h3>
+  </nav>
+  <div id="main-wrap">
+    <div class="section s-one">
+      <h1 class="title t-one">
+        Introduction
+      </h1>
+      <p class="content c-one">
+        Paris is a city offering so many opportunities for any kind of activity for hundreds of thousands
+        of tourists visiting it every year. For many of them it can be difficult to move through the many
+        streets of the city and find the most interesting places and things to do. They often rely on travel
+        guides they can find on the internet, but those guides don’t always reflect the interests of the
+        tourists. What if there was an app that collects all possible Paris activites and point of interest 
+        that could help tourists properly organize their days in the city? This DI Project will focus on the collection
+        of the data necessary for the implementation of such an application.
+      </p>
+    </div>
+    <div class="divider">. . .</div>
+    <div class="section s-two">
+      <h1 class="title t-two">
+        Datasets
+      </h1>
+      <p class="content c-two">
+        The datasets source considered is <a href="https://opendata.paris.fr/pages/home/">OpenData-Paris</a>, a web portal offering rich and complete datasets
+        collected by the city of Paris. Those data are open in a spirit of transparency and innovation, 
+        and to encourage the citizens to be active and co-designers of the city’s evolution.
+        We will focus on the datasets that can be related to tourism and leisure activities.
+      </p>
+      <ul class="ODP-list">
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/aires-pietonnes/information/"><b>Pedestrian Areas</b></a> : this is the list of all the pedestrian areas in Paris, associated with their
+            geo_shape.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/sites-disposant-du-service-paris-wi-fi/information/?disjunctive.cp&disjunctive.etat2"><b>Public Wi-Fi hotspots</b></a> : when people travel, they may lack internet connection or have a
+            very poor one. So, we consider it’s important to have the list of the Wi-Fi hotspots offered
+            by the city.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/marches-decouverts/information/?disjunctive.produit&disjunctive.ardt&disjunctive.jours_tenue&disjunctive.gestionnaire"><b>Open air markets</b></a> : it’s the list of the outdoors market that are present in Paris. It contains
+            information about the kind of products sold in the market, its position and its timetable.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/paris-autrement-balades-dans-les-arrondissements-peripheriques-poi/information/?disjunctive.code_postal&disjunctive.parcours&disjunctive.categorie&disjunctive.mot_cle"><b>Unusual Walks and PoI</b></a> : Paris is not only about the Tour Eiffel, Notre Dame and the
+            popular places. There are so many other interesting places to discover and this dataset is a
+            great source for Paris hidden gems.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/espaces_verts/information/?disjunctive.type_ev&disjunctive.categorie&disjunctive.adresse_codepostal&disjunctive.presence_cloture"><b>Green Area and Similar</b></a> : it’s the list of open and green areas managed by the city of
+            Paris. Many kinds of areas are available, such as: open walks, decorative gardens and road
+            decorations.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/?disjunctive.name&disjunctive.is_installed&disjunctive.is_renting&disjunctive.is_returning&disjunctive.nom_arrondissement_communes"><b>Public Bike Stations</b></a> : Tourists may want to be move in a fast, green and affordable way
+            so we will include the list of Paris bike stations. There are more than 1,400 bike stations
+            available in Paris and its outskirts.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/reseau-cyclable/information/?disjunctive.typologie_simple&disjunctive.bidirectionnel&disjunctive.statut&disjunctive.sens_velo&disjunctive.voie&disjunctive.arrdt&disjunctive.bois&disjunctive.position&disjunctive.circulation&disjunctive.piste&disjunctive.couloir_bus&disjunctive.type_continuite&disjunctive.reseau"><b>Cycling Tracks</b></a> : The list of cycling tracks in the city, associated with their geo_shape.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/bornes-dappel-taxi/information/?disjunctive.code_postal"><b>Taxi Stations</b></a> : The list of public taxi stations available in Paris, associated with their phone
+            number and location.
+          </li>
+          <li>
+            <a href="https://opendata.paris.fr/explore/dataset/que-faire-a-paris-/information/?disjunctive.tags&disjunctive.address_name&disjunctive.address_zipcode&disjunctive.address_city&disjunctive.pmr&disjunctive.blind&disjunctive.deaf&disjunctive.transport&disjunctive.price_type&disjunctive.access_type&disjunctive.programs"><b>Interesting Activities</b></a> : A list with thousands of events happening in Paris. Such as:
+            festivals, conferences, workshops, guided tours and many more.
+          </li>
+      </ul>
+      <p class="content c-two">
+        OpenData-Paris is offering us most of the data necessary for our DI project, yet there’s some
+        information useful for the tourists that we weren’t able to find there. So we decided to retrieve
+        this data from open-street maps. In order to extract data from open-street maps we used a tool
+        called <a href="https://overpass-turbo.eu/">Overpass Turbo</a> which allowed us to fetch the information we require. The data is stored as
+        geojson format and not all the elements in the list have the same fields so particular attention is
+        required when working with these datasets. Here’s the list of elements we’re going to retrieve:
+      </p>
+      <ul>
+        <li>
+          <b>Shopping center</b> : the list of malls and department stores useful for tourists who want to
+          shop in Paris.
+        </li>
+        <li>
+          <b>Restaurants</b> : list of restaurants in the city.
+        </li>
+        <li>
+          <b>Bus station</b> : list of Paris bus stations.
+        </li>
+        <li>
+          <b>Subway station</b> : list of Paris subway stations.
+        </li>
+        <li>
+          <b>Other points of interest</b> : list of places that can be useful for some of the users: parking
+          lot, bakeries, pharmacy.
+        </li>
+      </ul> 
+    </div>
+    <div class="divider">. . .</div>
+    <div class="section s-three">
+      <h1 class="title t-three">
+        Reference Schemas
+      </h1>
+      <p class="content c-three">
+        Given the collected data and our objective we created an informal ER schema helping us how to organize the data.
+        In the schema, we have two main objects (place and establishment) having many different functions. 
+        The first object is related to geographical areas without a specific
+        timetable (people can always go there) while the second object is describing geographical areas
+        where people can go only during certain days and hours. This division into two objects is useful
+        both for better organizing our data and for potential tourists who want to plan their trips using
+        the final result of our project. Another important element of our informal ER is the event EType,
+        which represents the different events happening in the city of Paris.
+        Here you can see a picture of the schema, please have a look to our <a href="https://github.com/g1nus/KDI_Paris3/blob/main/Documentation/Project%20Report.pdf">report</a> in case you're interested for more details.
+      </p>
+      <img id="er" src="./ER-yed.png" /> 
+    </div>
+    <div class="divider">. . .</div>
+    <div class="section s-four">
+      <h1 class="title t-four">
+        ETG
+      </h1>
+      <p class="content c-four">
+        In order to produce the ETG graph, we have to take into account our teleology and the following
+        foundational realtions :
+      </p>
+      <ul>
+        <li>
+          <b>hasFunction</b> : relates objects to functions and illustrates the fact that objects can have one or
+          more admissible functions
+        </li>
+        <li>
+          <b>hasFunctionAction</b> : relates functions to actions and illustrates the fact that functions can be
+          realized via one or more admissible functions
+        </li>
+        <li>
+          <b>hasObjectAction</b> : relates objects to actions and illustrates the fact that objects can have one
+          or more admissible functions
+        </li>
+        <li>
+          <b>ObjectToObjectRelation</b> : models the diverse array of semantic relations existing between dif-
+          ferent objects
+        </li>
+      </ul>
+      <p class="content c-four">
+        The ETG is pretty much following the ER model, fitted over the foundational teleology.
+        So we used Protégé to populate the foundational teleology
+        with our domain-specific concepts, by taking care of adding each one of them in the correct subcategory. The process took quite some time because we have many classes and data properties.
+      </p>
+    </div>
+    <div class="divider">. . .</div>
+    <div class="section s-five">
+      <h1 class="title t-five">
+        Final KG
+      </h1>
+      <p class="content c-five">
+        The final KG is allowing us to properly navigate our data through SparQL queries. Here are some quantitative features of our KG:
+      </p>
+      <ul>
+        <li>
+          <b>Number of Etypes</b> : 24
+        </li>
+        <li>
+          <b>Number of object properties</b> : 24
+        </li>
+        <li>
+          <b>Number of data properties</b> : 91
+        </li>
+      </ul>
+      <p class="content c-five">
+        In many ways, this project was challenging. We are happy that we managed to finish every
+        phase and come up with a working Knowledge Graph. We started with a big idea in mind but
+        we soon understood it was impossible in our time-frame to collect and integrate all the data we
+        wanted. But our results are still reusable and we made sure that they could be easily expanded.
+        During this project we encountered some very common issues, such as the impossibility to translate
+        certain concepts, and by facing them ourselves we understood a lot better why we need to create
+        methodologies such as iTelos to deal with Data Integration.
+        <br/><br/>
+      </p>
+    </div>
+    <p class="github">
+      You can find more details about this DI project at this <a href="https://github.com/g1nus/KDI_Paris3/tree/main/Documentation">github repo</a>.
+    </p>
+  </div>
+  <!-- <script src="js/scripts.js"></script> -->
+</body>
+</html>
