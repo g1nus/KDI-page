@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
 
 body{
     font-family: 'Merriweather', serif;
+    background-color: #fafafa;
 }
 
 p.content{
     text-align: justify;
     text-justify: inter-word;
+    color: #070425;
 }
 
 div#main-wrap{
@@ -15,11 +18,20 @@ div#main-wrap{
 }
 h1, h2, h3{
     text-align: center;
+    color: #08061e;
 }
 
 a{
-    color: black;
+    color: #090073;
     text-decoration-style: dotted;
+}
+span.code{
+    font-family: 'Courier Prime', monospace;
+    font-weight: 400;
+    font-size: 17px;
+    background-color: #e2e2e2;
+    border-radius: 2px;
+    padding: 0px 3px;
 }
 
 nav h1{
@@ -59,6 +71,14 @@ div.divider{
     margin: 25px auto 0px auto;
     text-align: center;
     line-height: 10px;
+}
+
+footer{
+    padding: 20px 0px 15px 0px;
+    text-align: center;
+}
+img#footer{
+    width: 200px;
 }
 
 @media only screen and (max-width: 960px) {

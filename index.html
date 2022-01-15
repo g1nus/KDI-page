@@ -49,7 +49,7 @@
       <ul class="ODP-list">
           <li>
             <a href="https://opendata.paris.fr/explore/dataset/aires-pietonnes/information/"><b>Pedestrian Areas</b></a> : this is the list of all the pedestrian areas in Paris, associated with their
-            geo_shape.
+            <span class="code">geo_shape</span>.
           </li>
           <li>
             <a href="https://opendata.paris.fr/explore/dataset/sites-disposant-du-service-paris-wi-fi/information/?disjunctive.cp&disjunctive.etat2"><b>Public Wi-Fi hotspots</b></a> : when people travel, they may lack internet connection or have a
@@ -76,7 +76,7 @@
             available in Paris and its outskirts.
           </li>
           <li>
-            <a href="https://opendata.paris.fr/explore/dataset/reseau-cyclable/information/?disjunctive.typologie_simple&disjunctive.bidirectionnel&disjunctive.statut&disjunctive.sens_velo&disjunctive.voie&disjunctive.arrdt&disjunctive.bois&disjunctive.position&disjunctive.circulation&disjunctive.piste&disjunctive.couloir_bus&disjunctive.type_continuite&disjunctive.reseau"><b>Cycling Tracks</b></a> : The list of cycling tracks in the city, associated with their geo_shape.
+            <a href="https://opendata.paris.fr/explore/dataset/reseau-cyclable/information/?disjunctive.typologie_simple&disjunctive.bidirectionnel&disjunctive.statut&disjunctive.sens_velo&disjunctive.voie&disjunctive.arrdt&disjunctive.bois&disjunctive.position&disjunctive.circulation&disjunctive.piste&disjunctive.couloir_bus&disjunctive.type_continuite&disjunctive.reseau"><b>Cycling Tracks</b></a> : The list of cycling tracks in the city, associated with their <span class="code">geo_shape</span>.
           </li>
           <li>
             <a href="https://opendata.paris.fr/explore/dataset/bornes-dappel-taxi/information/?disjunctive.code_postal"><b>Taxi Stations</b></a> : The list of public taxi stations available in Paris, associated with their phone
@@ -92,7 +92,7 @@
         information useful for the tourists that we weren’t able to find there. So we decided to retrieve
         this data from open-street maps. In order to extract data from open-street maps we used a tool
         called <a href="https://overpass-turbo.eu/">Overpass Turbo</a> which allowed us to fetch the information we require. The data is stored as
-        geojson format and not all the elements in the list have the same fields so particular attention is
+        <span class="code">geojson</span> format and not all the elements in the list have the same fields so particular attention is
         required when working with these datasets. Here’s the list of elements we’re going to retrieve:
       </p>
       <ul>
@@ -156,8 +156,7 @@
           or more admissible functions
         </li>
         <li>
-          <b>ObjectToObjectRelation</b> : models the diverse array of semantic relations existing between dif-
-          ferent objects
+          <b>ObjectToObjectRelation</b> : models the diverse array of semantic relations existing between different objects
         </li>
       </ul>
       <p class="content c-four">
@@ -199,6 +198,9 @@
     <p class="github">
       You can find more details about this DI project at this <a href="https://github.com/g1nus/KDI_Paris3/tree/main/Documentation">github repo</a>.
     </p>
+    <footer>
+      <a href="http://knowdive.disi.unitn.it/"><img id="footer" src="http://knowdive.disi.unitn.it/wp-content/uploads/knowdive-new-logo.png"/></a>
+    </footer>
   </div>
   <!-- <script src="js/scripts.js"></script> -->
 </body>
